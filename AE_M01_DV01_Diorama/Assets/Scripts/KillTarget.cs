@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class KillTarget : MonoBehaviour
 {
+    public TMP_Text scoreText;
+
     public GameObject target;
     public ParticleSystem hitEffect;
     public GameObject killEffect;
@@ -19,6 +23,8 @@ public class KillTarget : MonoBehaviour
         camera = Camera.main.transform;
         score = 0;
         countDown = timeToSelect;
+
+        scoreText.text = "Score: 0";
     }
 
     // Update is called once per frame
@@ -53,6 +59,7 @@ public class KillTarget : MonoBehaviour
                 //killed
                 Instantiate(killEffect, target.transform.position, target.transform.rotation);
                 score += 1;
+                scoreText.text = "Score: " + score;
                 countDown = timeToSelect;
                 SetRandomPosition();
             }
